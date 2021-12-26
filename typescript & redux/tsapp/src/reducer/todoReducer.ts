@@ -1,12 +1,21 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { todo } from '../action'
 
-const initState = ['soccer', 'report']
+export type stateType = {
+  text: string
+  id: string
+}
+const initState: stateType[] = []
 
 const todoReducer = createReducer(initState, (builder) => {
   builder
     .addCase(todo.addTodo, (state, action) => {
       state.push(action.payload)
+    })
+    .addCase(todo.deleteTodo, (state, action) => {
+      state.forEach((val, idx) => {
+        if (val.id === action.payload) state.splice(idx, 1)
+      })
     })
     .addDefaultCase((state, action) => {})
 })

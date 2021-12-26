@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addTodo } from '../action/todo'
+import { addTodo, deleteTodo } from '../action/todo'
 import { rootReducerType } from '../reducer'
+import { stateType } from '../reducer/todoReducer'
 import '../styles/Todos.css'
 
 export default function Todos() {
   const [inputs, setInputs] = useState<string>('')
   const dispatch = useDispatch()
-  const todos: string[] = useSelector((state: rootReducerType) => state.todos)
+  const todos: stateType[] = useSelector(
+    (state: rootReducerType) => state.todos
+  )
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputs(e.target.value)
   const onClickReg = () => dispatch(addTodo(inputs))
+  const onClickDel = (e: MouseEvent) => dispatch(deleteTodo(e.currentTarget.id))
 
   return (
     <>
@@ -23,8 +27,17 @@ export default function Todos() {
         />
         <button onClick={onClickReg}>등록</button>
       </div>
-      {todos.map((val, idx) => (
-        <li key={idx}>{val}</li>
+      {todos.map((val) => (
+        <li key={val.id} className="todo-li">
+          {val.text}
+          <button
+            className="delete-todo-btn"
+            id={val.id}
+            onClick={(e) => onClickDel(e)}
+          >
+            삭제
+          </button>
+        </li>
       ))}
     </>
   )

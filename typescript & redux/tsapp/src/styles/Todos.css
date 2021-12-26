@@ -1,3 +1,15 @@
 #input-sec {
   margin: 10px;
 }
+
+.todo-li {
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.delete-todo-btn {
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  margin-left: 15px;
+}
