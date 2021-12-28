@@ -1,0 +1,14 @@
+#nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.nav-elem {
+  text-decoration-line: none;
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: rgb(72, 30, 210);
+}
