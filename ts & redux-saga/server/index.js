@@ -1,15 +1,18 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 
-const count = 0
+let orgCount = 0
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 app.get('/get-count', (req, res) => {
-  res.send(count)
+  console.log("getCount API Request")
+  res.send({
+    count: orgCount
+  })
 })
 
 app.post('/update-count', (req, res) => {
