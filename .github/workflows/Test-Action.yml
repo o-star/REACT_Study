@@ -11,3 +11,5 @@ jobs:
     steps:
       - name: test echo step
         run: echo "This is test"
+      - name: sleep step
+        run: sleep 3m
