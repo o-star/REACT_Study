@@ -18,7 +18,7 @@ jobs:
       - name: echo trigger evnet
         run: echo "${{ github.event.action }}"
       - name: echo event.changes
-        run: echo "${{ github.event.changes }}"
+        run: echo "${{ github.event.changes.base }}"
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
