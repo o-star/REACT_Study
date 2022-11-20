@@ -17,7 +17,7 @@ jobs:
         run: echo "$GITHUB_HEAD_REF"
       - name: echo trigger evnet
         run: echo "${{ github.event.action }}"
-      - name: echo event.changes
+      - name: echo event.changes.base
         run: echo "${{ github.event.changes.base }}"
       # - name: sleep step
       #   run: sleep 3m
