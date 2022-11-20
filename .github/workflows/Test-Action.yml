@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: test echo step
         run: echo "This is test"
-      - name: sleep step
-        run: sleep 3m
-      - name: eche complete status
+      - name: echo base branch
+        run: echo "$GITHUB_BASE_REF"
+      - name: echo head branch
+        run: ehco "$GITHUB_HEAD_REF"
+      # - name: sleep step
+      #   run: sleep 3m
+      - name: echo complete status
         run: echo "Complete"
