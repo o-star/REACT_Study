@@ -10,6 +10,10 @@ jobs:
     if: ${{ !(github.event.changes.title || github.event.changes.body) }}
     runs-on: ubuntu-latest
     steps:
+      - uses: n1hility/cancel-previous-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: Test-Action.yml
       - name: test echo step
         run: echo "This is test"
       - name: echo base branch
@@ -21,7 +25,7 @@ jobs:
       - name: echo event.changes.base
         run: echo "${{ github.event.changes.base }}"
         if: github.event.action == 'edited' && github.event.changes.base
-      # - name: sleep step
-      #   run: sleep 3m
+      - name: sleep step
+        run: sleep 3m
       - name: echo complete status
         run: echo "Complete"
