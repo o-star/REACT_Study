@@ -19,6 +19,7 @@ jobs:
         run: echo "${{ github.event.action }}"
       - name: echo event.changes.base
         run: echo "${{ github.event.changes.base }}"
+        if: github.event.action == 'edited' && github.event.changes.base
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
