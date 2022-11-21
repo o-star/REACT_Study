@@ -33,6 +33,10 @@ jobs:
         if: github.event.action == 'edited' && github.event.changes.base
       - name: echo previous workflow status
         run: echo "${{ steps.last_status.outputs.last_status }}"
+      - name: ehco github.run_id
+        run: echo "${{ github.run_id }}"
+      - name: ehco github.run_number
+        run: echo "${{ github.run_number }}"
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
