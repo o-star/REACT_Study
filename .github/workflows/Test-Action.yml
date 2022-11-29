@@ -7,7 +7,25 @@ on:
     types: [opened, reopened, edited, synchronize, ready_for_review]
 jobs:
   test-action:
+    if: ${{ !(github.event.changes.title || github.event.changes.body) }}
     runs-on: ubuntu-latest
     steps:
       - name: test echo step
         run: echo "This is test"
+      - name: echo base branch
+        run: echo "$GITHUB_BASE_REF"
+      - name: echo head branch
+        run: echo "$GITHUB_HEAD_REF"
+      - name: echo trigger evnet
+        run: echo "${{ github.event.action }}"
+      - name: echo event.changes.base
+        run: echo "${{ github.event.changes.base }}"
+        if: github.event.action == 'edited' && github.event.changes.base
+      - name: ehco github.run_id
+        run: echo "${{ github.run_id }}"
+      - name: ehco github.run_number
+        run: echo "${{ github.run_number }}"
+      # - name: sleep step
+      #   run: sleep 3m
+      - name: echo complete status
+        run: echo "Complete"
