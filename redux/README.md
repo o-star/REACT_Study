@@ -7,3 +7,4 @@
 
 - ### Session Storage 사용 (redux-persist 활용)
 
+- action test
