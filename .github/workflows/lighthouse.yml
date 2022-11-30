@@ -9,4 +9,4 @@ jobs:
       - name: Audit live URL
         uses: jakejarvis/lighthouse-action@master
         with:
-          url: 'https://www.naver.com'
+          url: 'https://ostarblog.tistory.com/'
