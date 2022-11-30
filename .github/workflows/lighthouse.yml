@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Audit live URL
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://www.naver.com'
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          url: 'https://www.naver.com'
