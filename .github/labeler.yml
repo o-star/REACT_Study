@@ -1,0 +1,8 @@
+redux:
+  - redux/*
+
+redux-saga:
+  - ts & redux-saga/*
+
+hook:
+  - Hook/*
