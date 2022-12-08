@@ -1,11 +1,10 @@
-name: Test Action
+name: Test-Action
 
 on:
   pull_request:
     branches:
       - main
     types: [opened, reopened, edited, synchronize, ready_for_review]
-
 jobs:
   test-action:
     if: ${{ !(github.event.changes.title || github.event.changes.body) }}
@@ -26,6 +25,8 @@ jobs:
         run: echo "${{ github.run_id }}"
       - name: ehco github.run_number
         run: echo "${{ github.run_number }}"
+      - name: ehco github.ref
+        run: echo "${{ github.ref }}"
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
