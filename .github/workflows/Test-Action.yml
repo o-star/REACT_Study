@@ -15,7 +15,7 @@ jobs:
         with:
           filters: |
             src:
-              - 'redux/**/*'
+              - 'webpack/**/*'
       - name: path filter test
         run: echo "Path filter test"
         if: steps.changes.outputs.src == 'true'
@@ -36,7 +36,7 @@ jobs:
         run: echo "${{ github.run_number }}"
       - name: ehco github.ref
         run: echo "${{ github.ref }}"
-      - name: sleep step
-        run: sleep 3m
+      # - name: sleep step
+      #   run: sleep 3m
       - name: echo complete status
         run: echo "Complete"
