@@ -27,7 +27,7 @@ jobs:
         run: echo "${{ github.run_number }}"
       - name: ehco github.ref
         run: echo "${{ github.ref }}"
-      # - name: sleep step
-      #   run: sleep 3m
+      - name: sleep step
+        run: sleep 3m
       - name: echo complete status
         run: echo "Complete"
