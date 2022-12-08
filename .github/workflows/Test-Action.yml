@@ -10,6 +10,15 @@ jobs:
     if: ${{ !(github.event.changes.title || github.event.changes.body) }}
     runs-on: ubuntu-latest
     steps:
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'redux/**/*'
+      - name: path filter test
+        run: echo "Path filter test"
+        if: steps.changes.outputs.src == 'true'
       - name: test echo step
         run: echo "This is test"
       - name: echo base branch
