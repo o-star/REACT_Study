@@ -9,7 +9,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   test-action:
     if: ${{ !(github.event.changes.title || github.event.changes.body) }}
