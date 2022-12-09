@@ -6,6 +6,10 @@ on:
       - main
     types: [opened, reopened, edited, synchronize, ready_for_review]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   wait-for-status-check:
     runs-on: ubuntu-latest
@@ -16,6 +20,7 @@ jobs:
           token: '${{ secrets.GITHUB_TOKEN }}'
           # Ignore the job we're running on lest we create an infinite loop
           ignored_checks: 'wait-for-status-check'
+          max_attempts: 5
       - name: echo success
         run: echo "success"
         if: steps.wait-for-status.outputs.state == 'success'
