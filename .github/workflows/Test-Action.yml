@@ -7,7 +7,7 @@ on:
     types: [opened, reopened, edited, synchronize, ready_for_review]
 jobs:
   test-action:
-    if: ${{ !(github.event.changes.title || github.event.changes.body) }}
+    if: github.head_ref == 'action-test'
     runs-on: ubuntu-latest
     steps:
       - uses: dorny/paths-filter@v2
@@ -25,7 +25,6 @@ jobs:
         run: echo "$GITHUB_BASE_REF"
       - name: echo head branch
         run: echo "$GITHUB_HEAD_REF"
-        if: github.head_ref == 'action-test'
       - name: echo trigger evnet
         run: echo "${{ github.event.action }}"
       - name: echo event.changes.base
