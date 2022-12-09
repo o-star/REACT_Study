@@ -25,7 +25,7 @@ jobs:
         run: echo "$GITHUB_BASE_REF"
       - name: echo head branch
         run: echo "$GITHUB_HEAD_REF"
-        if: GITHUB_HEAD_REF == 'action-test'
+        if: github.head_ref == 'action-test'
       - name: echo trigger evnet
         run: echo "${{ github.event.action }}"
       - name: echo event.changes.base
