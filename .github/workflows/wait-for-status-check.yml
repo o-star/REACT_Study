@@ -1,0 +1,23 @@
+name: wait-for-status-check
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, edited, synchronize, ready_for_review]
+
+jobs:
+  wait-for-status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: autotelic/action-wait-for-status-check@v1
+        id: wait-for-status
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          statusName: "test-action"
+      - name: echo success
+        run: echo "success"
+        if: steps.wait-for-status.outputs.state == 'success'
+      - name: echo failure
+        run: echo "failure"
+        if: steps.wait-for-status.outputs.state == 'failure'

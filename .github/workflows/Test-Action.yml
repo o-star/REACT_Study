@@ -10,12 +10,6 @@ jobs:
     # if: github.head_ref == 'develop'
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            src:
-              - 'webpack/**/*'
       - name: path filter test
         run: echo "Path filter test"
         if: steps.changes.outputs.src == 'true'
@@ -43,7 +37,7 @@ jobs:
         with:
           pull-request-number: ${{ github.event.number }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: sleep step
-      #   run: sleep 3m
+      - name: sleep step
+        run: sleep 1m
       - name: echo complete status
         run: echo "Complete"
