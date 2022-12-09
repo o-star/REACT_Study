@@ -10,11 +10,12 @@ jobs:
   wait-for-status-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: autotelic/action-wait-for-status-check@v1
+      - uses: jchen1/wait-for-green@v1.0.7
         id: wait-for-status
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          statusName: "test-action"
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          # Ignore the job we're running on lest we create an infinite loop
+          ignored_checks: 'wait-for-status-check'
       - name: echo success
         run: echo "success"
         if: steps.wait-for-status.outputs.state == 'success'
