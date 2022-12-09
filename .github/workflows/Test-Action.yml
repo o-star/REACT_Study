@@ -38,6 +38,11 @@ jobs:
         run: echo "${{ github.ref }}"
       - name: echo PR number
         run: echo "${{ github.event.number }}"
+      - name: auto approve
+        uses: hmarr/auto-approve-action@v3
+        with:
+          pull-request-number: ${{ github.event.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
