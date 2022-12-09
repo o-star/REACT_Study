@@ -7,7 +7,7 @@ on:
     types: [opened, reopened, edited, synchronize, ready_for_review]
 jobs:
   test-action:
-    if: github.head_ref == 'develop'
+    # if: github.head_ref == 'develop'
     runs-on: ubuntu-latest
     steps:
       - uses: dorny/paths-filter@v2
@@ -36,6 +36,8 @@ jobs:
         run: echo "${{ github.run_number }}"
       - name: ehco github.ref
         run: echo "${{ github.ref }}"
+      - name: echo PR number
+        run: echo "${{ github.event.number }}"
       # - name: sleep step
       #   run: sleep 3m
       - name: echo complete status
