@@ -1,0 +1,32 @@
+name: wait-for-status-check
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, edited, synchronize, ready_for_review]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  wait-for-status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jchen1/wait-for-green@v1.0.7
+        id: wait-for-status
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          # Ignore the job we're running on lest we create an infinite loop
+          ignored_checks: 'wait-for-status-check'
+          max_attempts: 5
+      - name: echo actor
+        run: echo ${{ github.actor }}
+        if: steps.wait-for-status.outputs.success == 'true'
+      - name: echo triggering actor
+        run: echo ${{ github.triggering_actor }}
+        if: steps.wait-for-status.outputs.success == 'true'
+      - name: echo failure
+        run: echo "failure"
+        if: steps.wait-for-status.outputs.success != 'true'

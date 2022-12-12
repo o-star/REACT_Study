@@ -5,12 +5,16 @@ on:
     branches:
       - main
     types: [opened, reopened, edited, synchronize, ready_for_review]
-
+    paths:
+      - 'redux/**/*'
 jobs:
   test-action:
-    if: ${{ !(github.event.changes.title || github.event.changes.body) }}
+    # if: github.head_ref == 'develop'
     runs-on: ubuntu-latest
     steps:
+      - name: path filter test
+        run: echo "Path filter test"
+        if: steps.changes.outputs.src == 'true'
       - name: test echo step
         run: echo "This is test"
       - name: echo base branch
@@ -26,7 +30,16 @@ jobs:
         run: echo "${{ github.run_id }}"
       - name: ehco github.run_number
         run: echo "${{ github.run_number }}"
+      - name: ehco github.ref
+        run: echo "${{ github.ref }}"
+      - name: echo PR number
+        run: echo "${{ github.event.number }}"
+      - name: auto approve
+        uses: hmarr/auto-approve-action@v3
+        with:
+          pull-request-number: ${{ github.event.number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       # - name: sleep step
-      #   run: sleep 3m
+      #   run: sleep 1m
       - name: echo complete status
         run: echo "Complete"
