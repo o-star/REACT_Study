@@ -5,8 +5,9 @@ on:
     branches:
       - main
     types: [opened, reopened, edited, synchronize, ready_for_review]
-    paths-ignore:
-      - 'redux/**/*'
+    paths:
+      - '!redux/**/*'
+      - '**/*'
 jobs:
   test-action:
     runs-on: ubuntu-latest
