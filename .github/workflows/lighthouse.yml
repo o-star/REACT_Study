@@ -1,0 +1,16 @@
+name: Lighthouse Test
+
+on: workflow_dispatch
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audit live URL
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          url: 'https://ostarblog.tistory.com/'
+      - uses: actions/upload-artifact@master
+        with:
+          name: report
+          path: './report'
