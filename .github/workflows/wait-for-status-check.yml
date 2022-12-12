@@ -23,10 +23,10 @@ jobs:
           max_attempts: 5
       - name: echo actor
         run: echo ${{ github.actor }}
-        if: steps.wait-for-status.outputs.state == 'success'
+        if: steps.wait-for-status.outputs.success == 'true'
       - name: echo triggering actor
         run: echo ${{ github.triggering_actor }}
-        if: steps.wait-for-status.outputs.state == 'success'
+        if: steps.wait-for-status.outputs.success == 'true'
       - name: echo failure
         run: echo "failure"
-        if: steps.wait-for-status.outputs.state == 'failure'
+        if: steps.wait-for-status.outputs.success != 'true'
