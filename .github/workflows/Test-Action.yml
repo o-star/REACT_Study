@@ -37,7 +37,7 @@ jobs:
         with:
           pull-request-number: ${{ github.event.number }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: sleep step
-        run: sleep 1m
+      # - name: sleep step
+      #   run: sleep 1m
       - name: echo complete status
         run: echo "Complete"
