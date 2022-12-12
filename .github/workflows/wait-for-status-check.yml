@@ -21,8 +21,11 @@ jobs:
           # Ignore the job we're running on lest we create an infinite loop
           ignored_checks: 'wait-for-status-check'
           max_attempts: 5
-      - name: echo success
-        run: echo "success"
+      - name: echo actor
+        run: echo ${{ github.actor }}
+        if: steps.wait-for-status.outputs.state == 'success'
+      - name: echo triggering actor
+        run: echo ${{ github.triggering_actor }}
         if: steps.wait-for-status.outputs.state == 'success'
       - name: echo failure
         run: echo "failure"
