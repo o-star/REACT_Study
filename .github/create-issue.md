@@ -1,10 +1,7 @@
 ---
-name: Test issue
-about: Suggest an idea for this project
-title: Test issue
+title: "[ {{date | date('YYYY-MM-D')}} ] Test issue"
 labels: feature
 assignees: o-star
-
 ---
 
 ### Test issue
