@@ -1,5 +1,5 @@
 ---
-title: "[ {{date | date('YYYY-MM-DD')}} ] Test issue"
+title: "[ {{date | date('YYYY-MM-DD') + 1}} ] Test issue"
 labels: feature
 assignees: o-star
 ---
