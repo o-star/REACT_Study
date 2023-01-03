@@ -8,12 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create issue
-        uses: actions-cool/issues-helper@v3
+      - name: Create Issue From File
+        uses: peter-evans/create-issue-from-file@v4
         with:
-          actions: 'create-issue'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "[ {{date | date('YYYY-MM-DD')}} ] Test issue"
-          labels: 'feature'
-          assignees: 'o-star'
-          emoji: '+1'
+          title: ${{date | date('YYYY-MM-DD')}} Test issue
+          content-filepath: .github/output.md
+          labels: feature
