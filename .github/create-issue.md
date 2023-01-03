@@ -4,7 +4,7 @@ labels: feature
 assignees: o-star
 ---
 
-### Test issue
+### [ {{date | date('YYYY-MM-DD')}} ] Test issue
 
 - list1
 - list2

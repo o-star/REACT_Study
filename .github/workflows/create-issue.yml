@@ -8,8 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create issue
+        uses: actions-cool/issues-helper@v3
         with:
-          filename: .github/create-issue.md
+          actions: 'create-issue'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "[ {{date | date('YYYY-MM-DD')}} ] Test issue"
+          body: '
+          ### [ {{date | date('YYYY-MM-DD')}} ] Test issue
+          - list1
+          - list2'
+          labels: 'feature'
+          assignees: 'o-star'
