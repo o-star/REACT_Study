@@ -11,6 +11,6 @@ jobs:
       - name: Create Issue From File
         uses: peter-evans/create-issue-from-file@v4
         with:
-          title: ${{date | date('YYYY-MM-DD')}} Test issue
-          content-filepath: .github/output.md
+          title: Test issue
+          content-filepath: .github/create-issue.md
           labels: feature
