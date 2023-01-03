@@ -14,9 +14,10 @@ jobs:
           actions: 'create-issue'
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "[ {{date | date('YYYY-MM-DD')}} ] Test issue"
-          body: '
-          ### [ {{date | date('YYYY-MM-DD')}} ] Test issue
-          - list1
-          - list2'
+          body: '\n' +
+            '<br/>\n' +
+            '\n' +
+            '- **금주 업무 내용을 요약해 코멘트로 작성해주시면 감사하겠습니다 👌**\n' +
           labels: 'feature'
           assignees: 'o-star'
+          emoji: '+1'
