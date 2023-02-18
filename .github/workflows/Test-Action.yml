@@ -1,4 +1,4 @@
-name: Test Action
+name: Test-Action
 
 on:
   pull_request:
@@ -6,6 +6,9 @@ on:
       - main
     types: [opened, reopened, edited, synchronize, ready_for_review]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   test-action:
     if: ${{ !(github.event.changes.title || github.event.changes.body) }}
@@ -26,7 +29,9 @@ jobs:
         run: echo "${{ github.run_id }}"
       - name: ehco github.run_number
         run: echo "${{ github.run_number }}"
-      # - name: sleep step
-      #   run: sleep 3m
+      - name: ehco github.ref
+        run: echo "${{ github.ref }}"
+      - name: sleep step
+        run: sleep 3m
       - name: echo complete status
         run: echo "Complete"
